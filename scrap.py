@@ -12,8 +12,8 @@ a = soup.find("div", id="ep")
 b = a.find_all("div",class_="td")
 
 anime_list=["Boku No Hero Academia 3rd Season", "Steinsgate 0", "Boruto Naruto Next Generations", "Tokyo Ghoulre"]
-episode_list = ['0', '0', '0', '0']
-time_list = ['0', '0', '0', '0']
+episode_list = ['-', '-', '-', '-']
+time_list = ['-', '-', '-', '-']
 link_list = ["","","",""]
 
 for anime in b:
@@ -31,10 +31,14 @@ for anime in b:
 #t["Episodes"] = episode_list
 #t["Time"] = time_list
 
-html = '''<!DOCTYPE html><head><title>Anime Updates</title><style>
+html = '''<!DOCTYPE html>
+<head>
+<title>Anime Updates</title>
+<style>
     body{
         background-color: #303030;
         color: white;
+        font-family: monospace;
     }
 table, td, th {    
     background-color: #424242;
@@ -60,7 +64,7 @@ th {
     color: white;
 }
     a:link, a:visited {
-    background-color: #00796B;
+    background-color: rgba(0, 121, 107, 0.55);
     color: white;
     padding: 14px 40px;
     text-align: center;
@@ -72,7 +76,19 @@ th {
 a:hover, a:active {
     background-color: #00E676;
 }
+
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.55);
+    color: white;
+    text-align: center;
+
+}
 </style>
+
 </head>
 <body>
     <table>
@@ -112,9 +128,16 @@ for i in range(len(link_list)):
         html = html + link_list[i] + "\">Link</a></td></tr>"
         break
 
-    html = html + link_list[i] + "\">Link</a></td><td class=\"lin\"><a href=\""
+    html = html + link_list[i] + '''\">Link</a>
+    </td>
+    <td class=\"lin\"><a href=\"'''
 
-html = html + "</table></body></html>"
+html = html + '''</table>
+<div class=\"footer\">
+<p>Birthed Painfully By: KyroXen</p>
+</div>
+</body>
+</html>'''
 
 try:
     f = open("result.html", mode='w', encoding='UTF-8')
